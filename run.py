@@ -4,6 +4,7 @@
   python run.py analyze [rq1 rq3 rq4 rq5 rq6 xvenue]    run analyses (default: all)
   python run.py analyze final_tar final_rules           full estimators (slow)
   python run.py analyze final_rq3                       pooled VECM per month and session
+  python run.py analyze final_band                      thresholds against the direction-specific cost band
   python run.py verify                                  compare with the pilot values
   python run.py all                                     everything, in order
 """
@@ -48,6 +49,9 @@ def analyze(which):
         elif name == "final_rq3":
             from analysis import rq3_pooled
             rq3_pooled.run()
+        elif name == "final_band":
+            from analysis import final
+            final.run_band(H, D)
         elif name == "final_rules":
             from analysis import final
             final.run_rules(H, D)

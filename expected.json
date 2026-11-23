@@ -1443,5 +1443,109 @@
  "final.rq3.all.all.cs": [
   0.095,
   0.02
+ ],
+ "final.band.pre_tax.cost_up": [
+  12.0,
+  2.0
+ ],
+ "final.band.pre_tax.cost_lo": [
+  12.0,
+  2.0
+ ],
+ "final.band.pre_tax.width": [
+  195.1,
+  2.0
+ ],
+ "final.band.pre_tax.cost_round_trip": [
+  24.0,
+  2.0
+ ],
+ "final.band.pre_tax.implied_rupiah_cost": [
+  171.1,
+  2.0
+ ],
+ "final.band.pre_tax.asym": [
+  113.0,
+  2.0
+ ],
+ "final.band.pre_tax.cost_asym": [
+  0.0,
+  2.0
+ ],
+ "final.band.pre_tax.median": [
+  40.4,
+  2.0
+ ],
+ "final.band.pmk68.cost_up": [
+  22.0,
+  2.0
+ ],
+ "final.band.pmk68.cost_lo": [
+  23.0,
+  2.0
+ ],
+ "final.band.pmk68.width": [
+  11.2,
+  2.0
+ ],
+ "final.band.pmk68.cost_round_trip": [
+  45.0,
+  2.0
+ ],
+ "final.band.pmk68.implied_rupiah_cost": [
+  -33.8,
+  2.0
+ ],
+ "final.band.pmk68.asym": [
+  -0.6,
+  2.0
+ ],
+ "final.band.pmk68.cost_asym": [
+  -1.0,
+  2.0
+ ],
+ "final.band.pmk68.median": [
+  19.5,
+  2.0
+ ],
+ "final.band.pmk50.cost_up": [
+  33.0,
+  2.0
+ ],
+ "final.band.pmk50.cost_lo": [
+  12.0,
+  2.0
+ ],
+ "final.band.pmk50.width": [
+  41.1,
+  2.0
+ ],
+ "final.band.pmk50.cost_round_trip": [
+  45.0,
+  2.0
+ ],
+ "final.band.pmk50.implied_rupiah_cost": [
+  -3.9,
+  2.0
+ ],
+ "final.band.pmk50.asym": [
+  -30.0,
+  2.0
+ ],
+ "final.band.pmk50.cost_asym": [
+  21.0,
+  2.0
+ ],
+ "final.band.pmk50.median": [
+  10.9,
+  2.0
+ ],
+ "final.band.asym_change_observed": [
+  -29.4,
+  2.0
+ ],
+ "final.band.asym_change_predicted": [
+  22.0,
+  2.0
  ]
 }

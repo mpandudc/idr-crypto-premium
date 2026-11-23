@@ -75,17 +75,35 @@ def vecm_shares(X, k=3):
     return dict(is_lo=lo, is_hi=hi, is_mid=mid, cs=cs[0], ils=il1 / (il1 + il2), n=len(X))
 
 
-def cost_band(date, professional=True):
-    """Round-trip cost of closing the crypto channel (upper, lower), in log points.
-    Domestic fee 0 (professional) or 0.3% (retail), global fee 0.1%, transfer 0.02%,
-    plus the transaction taxes in force (PMK 68/2022 from May 2022, PMK 50/2025 from Aug 2025)."""
-    fd = 0.0 if professional else 0.003
-    base = fd + 0.001 + 0.0002
+def domestic_tax(date):
+    """Transaction tax on a domestic crypto (sale, purchase), in log points:
+    none before PMK 68/2022; 0.1% income tax on sales and 0.11% VAT on purchases from 1 May 2022;
+    0.21% on sales and no VAT from 1 Aug 2025 (PMK 50/2025)."""
     if date < pd.Timestamp("2022-05-01"):
-        return base, base
+        return 0.0, 0.0
     if date < pd.Timestamp("2025-08-01"):
-        return base + 0.001, base + 0.0011
-    return base + 0.0021, base
+        return 0.001, 0.0011
+    return 0.0021, 0.0
+
+
+def cost_band(date, professional=True, kind="crypto"):
+    """Cost of closing a premium (upper, lower), in log points, crypto side only.
+    Domestic fee 0 (professional) or 0.3% (retail) per domestic trade, global fee 0.1%, transfer 0.02%.
+
+    kind="crypto": the crypto channel is closed with two domestic trades, one sale and one purchase
+      (sell BTC and buy USDT when BTC/IDR is rich; buy BTC and sell USDT when it is cheap), so both
+      directions pay both taxes and the band is symmetric.
+    kind="total": the total premium is closed with one domestic trade and a rupiah conversion outside
+      the platform. A positive premium is closed by selling domestically (sale tax), a negative one by
+      buying domestically (purchase VAT), so the band is direction-specific. The rupiah conversion cost
+      is not observed and is not included."""
+    fd = 0.0 if professional else 0.003
+    sale, buy = domestic_tax(date)
+    base = 0.001 + 0.0002
+    if kind == "crypto":
+        c = base + 2 * fd + sale + buy
+        return c, c
+    return base + fd + sale, base + fd + buy
 
 
 def episodes(pt, th):

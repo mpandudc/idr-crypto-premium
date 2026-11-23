@@ -15,7 +15,7 @@ download it again from the original sources.
     .venv/bin/python run.py all                      # fetch, build, analyze, verify
     .venv/bin/python run.py fetch hourly             # one build step
     .venv/bin/python run.py analyze rq5              # one analysis
-    .venv/bin/python run.py analyze final_tar final_rq3 final_rules   # full estimators
+    .venv/bin/python run.py analyze final_tar final_rq3 final_band final_rules   # full estimators
     TP_END=2027-01-01 .venv/bin/python run.py all    # extend the sample
 
 ## Layout
@@ -24,7 +24,7 @@ download it again from the original sources.
     sources.py       downloaders (Indodax, Binance, Coinbase, Bank Indonesia JISDOR,
                      Yahoo USD/IDR, Tokocrypto legacy API, Upbit Indonesia)
     build.py         aligns the sources into panels in data/interim
-    analysis/        rq1_rq2, rq3, rq3_pooled, rq4, rq5, rq6, xvenue, final
+    analysis/        rq1_rq2, rq3, rq3_pooled, rq4, rq5, rq6, xvenue, final (TAR, band, rules)
     verify.py        compares results/summary.json with expected.json
 
 ## Definitions

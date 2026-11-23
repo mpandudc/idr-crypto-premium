@@ -10,7 +10,7 @@ import json
 import numpy as np
 import pandas as pd
 
-from analysis.common import episodes, half_life, record
+from analysis.common import cost_band, episodes, half_life, record
 from analysis.rq5 import tar_fit
 from config import BP, EPISODE_TH, RESULTS
 
@@ -156,3 +156,42 @@ def run_rules(H, D):
         frozen["rules"][rule] = choose(rule, D.index, 10)
     (RESULTS / "frozen_rules_dryrun.json").write_text(json.dumps(frozen, indent=1))
     print("frozen (dry run):", frozen)
+
+
+# ------------------------------------------------------------------ direction-specific cost band
+REGIMES = {"total_pre_tax": ("2021-01-01", "2022-04-30"), "total_pmk68": ("2022-05-01", "2025-07-31"),
+           "total_pmk50": ("2025-08-01", "2099-12-31")}
+
+
+def run_band(H, D):
+    """Compare the estimated thresholds of each tax regime with the crypto-side cost of closing the
+    total premium in each direction (common.cost_band, kind="total").
+
+    In a band model around an equilibrium m, gU = m + cU and gL = m - cL, so the band width gU - gL
+    estimates the round trip cU + cL, and the asymmetry (gU - m) - (m - gL) = gU + gL - 2m estimates
+    cU - cL. m is taken as the regime median of the premium. The rupiah conversion is not observed, so
+    width minus the crypto-side round trip is the implied rupiah-side cost."""
+    T = pd.read_csv(RESULTS / "final_tar.csv").set_index("series")
+    rows = []
+    for lab, (a, b) in REGIMES.items():
+        x = D.loc[a:b, "pt"]
+        cu, cl = cost_band(pd.Timestamp(a), kind="total")
+        r = T.loc[lab]
+        m = x.median()
+        rows.append(dict(regime=lab, days=len(x), p_boot=r.p_boot, gL=r.gL * BP, gU=r.gU * BP,
+                         gL_lo=r.gL_lo * BP, gL_hi=r.gL_hi * BP, gU_lo=r.gU_lo * BP, gU_hi=r.gU_hi * BP,
+                         median=m * BP, cost_up=cu * BP, cost_lo=cl * BP,
+                         width=(r.gU - r.gL) * BP, cost_round_trip=(cu + cl) * BP,
+                         implied_rupiah_cost=(r.gU - r.gL - cu - cl) * BP,
+                         asym=(r.gU + r.gL - 2 * m) * BP, cost_asym=(cu - cl) * BP,
+                         share_above_up=float((x - m > cu).mean()), share_below_lo=float((m - x > cl).mean())))
+    R = pd.DataFrame(rows)
+    R.to_csv(RESULTS / "final_band.csv", index=False)
+    print(R.round(2).to_string(index=False))
+    for _, r in R.iterrows():
+        k = "final.band." + r.regime.replace("total_", "")
+        for c in ("cost_up", "cost_lo", "width", "cost_round_trip", "implied_rupiah_cost", "asym", "cost_asym", "median"):
+            record(f"{k}.{c}", round(float(r[c]), 1))
+    a68, a50 = R.set_index("regime").loc[["total_pmk68", "total_pmk50"], ["asym", "cost_asym"]].values
+    record("final.band.asym_change_observed", round(float(a50[0] - a68[0]), 1))
+    record("final.band.asym_change_predicted", round(float(a50[1] - a68[1]), 1))
