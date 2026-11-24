@@ -116,3 +116,55 @@ def run(H, D, J):
                     ("cost", lambda: cost(H, D)), ("replay", lambda: replay(D))):
         print(f"--- {name}", flush=True)
         f()
+
+
+def sample_report(H, D, A, month="2026-10"):
+    """Numbers for the sample monthly price competitiveness report (Section IV.3), from public data only."""
+    from config import COINS
+    fz = json.loads((RESULTS / "frozen_rules_dryrun.json").read_text())
+    m0 = pd.Period(month, "M")
+    prev, yago = str(m0 - 1), str(m0 - 12)
+    out = {}
+    for lab, mo in (("this", month), ("prev", prev), ("yago", yago)):
+        s = D.loc[mo]
+        X = H.loc[mo, ["btcidr", "btcv"]].dropna()
+        pt = D.pt.reindex(X.index.normalize()).ffill().values
+        out[lab] = dict(days=len(s), total_bp=s.pt.mean() * BP, crypto_bp=s.pc.mean() * BP, rupiah_bp=s.pr.mean() * BP,
+                        rupiah_share=s.pt.cov(s.pr) / s.pt.var() if len(s) > 2 else np.nan,
+                        max_total_bp=s.pt.max() * BP, min_total_bp=s.pt.min() * BP,
+                        volume_idr_bn=float((X.btcidr * X.btcv).sum() / 1e9),
+                        premium_idr_bn=float((pt * X.btcidr * X.btcv).sum() / 1e9))
+    # fixing gaps that end in the month
+    G = fixing_gaps(H, D.jis)
+    G = G[(G.b >= m0.start_time) & (G.b <= m0.end_time)]
+    gaps = G.groupby("type").agg(n=("dj", "size"), dj_bp=("dj", lambda x: x.mean() * BP),
+                                 du_bp=("du", lambda x: x.mean() * BP),
+                                 same_sign=("dj", lambda x: float((np.sign(x) == np.sign(G.loc[x.index, "du"])).mean())))
+    # widest crypto channels across assets in the month (median absolute, traded hours)
+    rows = []
+    u = H.usdtidr
+    for c in COINS:
+        p, v, g = (H.btcidr, H.btcv, H.glob) if c == "BTC" else (A.get(f"{c}_p"), A.get(f"{c}_v"), A.get(f"{c}_g"))
+        if p is None:
+            continue
+        X = pd.DataFrame({"p": p, "v": v, "u": u, "g": g}).loc[month].dropna()
+        X = X[X.v > 0]
+        if len(X) < 50:
+            continue
+        pi = (np.log(X.p) - np.log(X.u) - np.log(X.g)) * BP
+        rows.append(dict(asset=c, hours=len(X), median_abs_bp=pi.abs().median(), volume_idr_bn=float((X.p * X.v).sum() / 1e9)))
+    W = pd.DataFrame(rows).sort_values("median_abs_bp", ascending=False)
+    # alerts with the dry-run thresholds
+    s = D.loc[month].copy()
+    dpt = D.pt.diff().reindex(s.index)
+    c2 = fz["rules"]["L2 level and rising"]
+    l2 = s.index[(s.pt.abs() > c2) & (np.sign(s.pt) * dpt > 0)]
+    bench = s.index[s.pt.abs() > 0.005]
+    red = s.index[s.pt.abs() > fz["episode_threshold"]]
+    hc = H.loc[month, "pc"]
+    rep = dict(month=month, levels=out, gaps=gaps.reset_index().to_dict("records"),
+               widest=W.head(10).to_dict("records"), l2_alerts=[str(d.date()) for d in l2],
+               bench_alerts=[str(d.date()) for d in bench], red_days=[str(d.date()) for d in red],
+               crypto_hourly_max_bp=float(hc.max() * BP), crypto_hourly_max_at=str(hc.idxmax()))
+    (RESULTS / f"sample_report_{month}.json").write_text(json.dumps(rep, indent=1, default=float))
+    print(json.dumps(rep, indent=1, default=float)[:4000])

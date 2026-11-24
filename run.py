@@ -57,6 +57,9 @@ def analyze(which):
         elif name == "extras":
             from analysis import extras
             extras.run(H, D, J)
+        elif name == "report":
+            from analysis import extras
+            extras.sample_report(H, D, build.load_alts())
         elif name == "robust":
             from analysis import robust
             robust.run(H, D, J)
