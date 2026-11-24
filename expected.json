@@ -1547,5 +1547,277 @@
  "final.band.asym_change_predicted": [
   22.0,
   2.0
+ ],
+ "extra.stress.cut_bp": [
+  52.2,
+  2.0
+ ],
+ "extra.stress.stress.n": [
+  59.0,
+  0
+ ],
+ "extra.stress.stress.slope": [
+  0.324,
+  0.02
+ ],
+ "extra.stress.stress.t": [
+  3.618,
+  0.02
+ ],
+ "extra.stress.stress.r2": [
+  0.369,
+  0.02
+ ],
+ "extra.stress.stress.sign_match": [
+  0.864,
+  0.02
+ ],
+ "extra.stress.stress.mean_dj_bp": [
+  71.734,
+  2.0
+ ],
+ "extra.stress.stress.mean_du_bp": [
+  44.165,
+  2.0
+ ],
+ "extra.stress.other.n": [
+  1103.0,
+  0
+ ],
+ "extra.stress.other.slope": [
+  0.408,
+  0.02
+ ],
+ "extra.stress.other.t": [
+  8.85,
+  0.02
+ ],
+ "extra.stress.other.r2": [
+  0.241,
+  0.02
+ ],
+ "extra.stress.other.sign_match": [
+  0.621,
+  0.02
+ ],
+ "extra.stress.other.mean_dj_bp": [
+  -1.667,
+  2.0
+ ],
+ "extra.stress.other.mean_du_bp": [
+  -0.942,
+  2.0
+ ],
+ "extra.stress.all_2022+.n": [
+  1162.0,
+  0
+ ],
+ "extra.stress.all_2022+.slope": [
+  0.484,
+  0.02
+ ],
+ "extra.stress.all_2022+.t": [
+  10.379,
+  0.02
+ ],
+ "extra.stress.all_2022+.r2": [
+  0.296,
+  0.02
+ ],
+ "extra.stress.all_2022+.sign_match": [
+  0.633,
+  0.02
+ ],
+ "extra.stress.all_2022+.mean_dj_bp": [
+  2.06,
+  2.0
+ ],
+ "extra.stress.all_2022+.mean_du_bp": [
+  1.348,
+  2.0
+ ],
+ "extra.tax_clean.days": [
+  160.0,
+  0.02
+ ],
+ "extra.tax_clean.gL": [
+  23.869,
+  0.02
+ ],
+ "extra.tax_clean.gU": [
+  32.998,
+  0.02
+ ],
+ "extra.tax_clean.p_boot": [
+  0.849,
+  0.02
+ ],
+ "extra.tax_clean.median": [
+  27.887,
+  0.02
+ ],
+ "extra.tax_clean.asym": [
+  1.093,
+  0.02
+ ],
+ "extra.tax_clean.gL_lo": [
+  1.423,
+  0.02
+ ],
+ "extra.tax_clean.gL_hi": [
+  27.967,
+  0.02
+ ],
+ "extra.tax_clean.gU_lo": [
+  23.666,
+  0.02
+ ],
+ "extra.tax_clean.gU_hi": [
+  53.572,
+  0.02
+ ],
+ "extra.eth.2021.share_rupiah": [
+  0.896,
+  0.02
+ ],
+ "extra.eth.2021.mean_total_bp": [
+  102.4,
+  2.0
+ ],
+ "extra.eth.2022.share_rupiah": [
+  0.462,
+  0.02
+ ],
+ "extra.eth.2022.mean_total_bp": [
+  21.6,
+  2.0
+ ],
+ "extra.eth.2023.share_rupiah": [
+  0.691,
+  0.02
+ ],
+ "extra.eth.2023.mean_total_bp": [
+  3.0,
+  2.0
+ ],
+ "extra.eth.2024.share_rupiah": [
+  0.582,
+  0.02
+ ],
+ "extra.eth.2024.mean_total_bp": [
+  28.8,
+  2.0
+ ],
+ "extra.eth.2025.share_rupiah": [
+  0.29,
+  0.02
+ ],
+ "extra.eth.2025.mean_total_bp": [
+  24.1,
+  2.0
+ ],
+ "extra.eth.2026.share_rupiah": [
+  0.712,
+  0.02
+ ],
+ "extra.eth.2026.mean_total_bp": [
+  -1.2,
+  2.0
+ ],
+ "extra.eth.all.share_rupiah": [
+  0.778,
+  0.02
+ ],
+ "extra.eth.all.mean_total_bp": [
+  30.9,
+  2.0
+ ],
+ "extra.cost.2021.volume_idr_bn": [
+  37147.0,
+  2.0
+ ],
+ "extra.cost.2021.premium_paid_idr_bn": [
+  530.9,
+  2.0
+ ],
+ "extra.cost.2021.vw_premium_bp": [
+  142.9,
+  2.0
+ ],
+ "extra.cost.2022.volume_idr_bn": [
+  8646.0,
+  2.0
+ ],
+ "extra.cost.2022.premium_paid_idr_bn": [
+  18.5,
+  2.0
+ ],
+ "extra.cost.2022.vw_premium_bp": [
+  21.4,
+  2.0
+ ],
+ "extra.cost.2023.volume_idr_bn": [
+  4846.0,
+  2.0
+ ],
+ "extra.cost.2023.premium_paid_idr_bn": [
+  3.4,
+  2.0
+ ],
+ "extra.cost.2023.vw_premium_bp": [
+  7.0,
+  2.0
+ ],
+ "extra.cost.2024.volume_idr_bn": [
+  17889.0,
+  2.0
+ ],
+ "extra.cost.2024.premium_paid_idr_bn": [
+  52.2,
+  2.0
+ ],
+ "extra.cost.2024.vw_premium_bp": [
+  29.2,
+  2.0
+ ],
+ "extra.cost.2025.volume_idr_bn": [
+  25174.0,
+  2.0
+ ],
+ "extra.cost.2025.premium_paid_idr_bn": [
+  42.9,
+  2.0
+ ],
+ "extra.cost.2025.vw_premium_bp": [
+  17.1,
+  2.0
+ ],
+ "extra.cost.2026.volume_idr_bn": [
+  9229.0,
+  2.0
+ ],
+ "extra.cost.2026.premium_paid_idr_bn": [
+  4.5,
+  2.0
+ ],
+ "extra.cost.2026.vw_premium_bp": [
+  4.9,
+  2.0
+ ],
+ "extra.replay.l2_threshold": [
+  0.006,
+  2.0
+ ],
+ "extra.replay.l2_alerts_2021": [
+  85,
+  0
+ ],
+ "extra.replay.bench_alerts_2021": [
+  154,
+  0
+ ],
+ "extra.replay.red_days_2021": [
+  118,
+  0
  ]
 }

@@ -5,6 +5,7 @@
   python run.py analyze final_tar final_rules           full estimators (slow)
   python run.py analyze final_rq3                       pooled VECM per month and session
   python run.py analyze final_band                      thresholds against the direction-specific cost band
+  python run.py analyze extras                          rupiah-stress RQ4, pre-break tax test, ETH, cost, 2021 replay
   python run.py verify                                  compare with the pilot values
   python run.py all                                     everything, in order
 """
@@ -52,6 +53,9 @@ def analyze(which):
         elif name == "final_band":
             from analysis import final
             final.run_band(H, D)
+        elif name == "extras":
+            from analysis import extras
+            extras.run(H, D, J)
         elif name == "final_rules":
             from analysis import final
             final.run_rules(H, D)
