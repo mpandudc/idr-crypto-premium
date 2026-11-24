@@ -24,7 +24,7 @@ download it again from the original sources.
     sources.py       downloaders (Indodax, Binance, Coinbase, Bank Indonesia JISDOR,
                      Yahoo USD/IDR, Tokocrypto legacy API, Upbit Indonesia)
     build.py         aligns the sources into panels in data/interim
-    analysis/        rq1_rq2, rq3, rq3_pooled, rq4, rq5, rq6, xvenue, final (TAR, band, rules), extras
+    analysis/        rq1_rq2, rq3, rq3_pooled, rq4, rq5, rq6, xvenue, final (TAR, band, rules), extras, robust
     verify.py        compares results/summary.json with expected.json
 
 ## Definitions

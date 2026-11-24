@@ -1819,5 +1819,241 @@
  "extra.replay.red_days_2021": [
   118,
   0
+ ],
+ "robust.calm.days_dropped": [
+  15,
+  0
+ ],
+ "robust.calm.tar_gL": [
+  13.8,
+  0.02
+ ],
+ "robust.calm.tar_gU": [
+  26.3,
+  0.02
+ ],
+ "robust.calm.tar_p": [
+  0.01,
+  0.02
+ ],
+ "robust.calm.2021.mean_bp": [
+  92.0,
+  2.0
+ ],
+ "robust.calm.2021.share_rupiah": [
+  0.955,
+  0.02
+ ],
+ "robust.calm.2021.half_life": [
+  2.68,
+  0.02
+ ],
+ "robust.calm.2022.mean_bp": [
+  18.6,
+  2.0
+ ],
+ "robust.calm.2022.share_rupiah": [
+  0.482,
+  0.02
+ ],
+ "robust.calm.2022.half_life": [
+  0.69,
+  0.02
+ ],
+ "robust.calm.2023.mean_bp": [
+  6.5,
+  2.0
+ ],
+ "robust.calm.2023.share_rupiah": [
+  0.655,
+  0.02
+ ],
+ "robust.calm.2023.half_life": [
+  0.85,
+  0.02
+ ],
+ "robust.calm.2024.mean_bp": [
+  26.4,
+  2.0
+ ],
+ "robust.calm.2024.share_rupiah": [
+  0.575,
+  0.02
+ ],
+ "robust.calm.2024.half_life": [
+  0.89,
+  0.02
+ ],
+ "robust.calm.2025.mean_bp": [
+  20.5,
+  2.0
+ ],
+ "robust.calm.2025.share_rupiah": [
+  0.565,
+  0.02
+ ],
+ "robust.calm.2025.half_life": [
+  0.73,
+  0.02
+ ],
+ "robust.calm.2026.mean_bp": [
+  -0.7,
+  2.0
+ ],
+ "robust.calm.2026.share_rupiah": [
+  0.719,
+  0.02
+ ],
+ "robust.calm.2026.half_life": [
+  1.0,
+  0.02
+ ],
+ "robust.calm.all.mean_bp": [
+  27.8,
+  2.0
+ ],
+ "robust.calm.all.share_rupiah": [
+  0.864,
+  0.02
+ ],
+ "robust.calm.all.half_life": [
+  2.02,
+  0.02
+ ],
+ "robust.cutoff08.holiday.slope": [
+  0.602,
+  0.02
+ ],
+ "robust.cutoff08.holiday.t": [
+  10.246,
+  0.02
+ ],
+ "robust.cutoff08.holiday.r2": [
+  0.681,
+  0.02
+ ],
+ "robust.cutoff08.overnight.slope": [
+  0.47,
+  0.02
+ ],
+ "robust.cutoff08.overnight.t": [
+  12.164,
+  0.02
+ ],
+ "robust.cutoff08.overnight.r2": [
+  0.307,
+  0.02
+ ],
+ "robust.cutoff08.weekend.slope": [
+  0.358,
+  0.02
+ ],
+ "robust.cutoff08.weekend.t": [
+  3.275,
+  0.02
+ ],
+ "robust.cutoff08.weekend.r2": [
+  0.155,
+  0.02
+ ],
+ "robust.gfevd.BTC.own_share_idr": [
+  50.8,
+  0.02
+ ],
+ "robust.gfevd.BTC.global_share_idr": [
+  49.2,
+  0.02
+ ],
+ "robust.gfevd.ETH.own_share_idr": [
+  50.6,
+  0.02
+ ],
+ "robust.gfevd.ETH.global_share_idr": [
+  49.4,
+  0.02
+ ],
+ "robust.cb.2021.mean_cb_bp": [
+  96.384,
+  2.0
+ ],
+ "robust.cb.2021.corr": [
+  0.999,
+  0.02
+ ],
+ "robust.cb.2021.share_rupiah_cb": [
+  0.963,
+  0.02
+ ],
+ "robust.cb.2022.mean_cb_bp": [
+  19.725,
+  2.0
+ ],
+ "robust.cb.2022.corr": [
+  0.999,
+  0.02
+ ],
+ "robust.cb.2022.share_rupiah_cb": [
+  0.487,
+  0.02
+ ],
+ "robust.cb.2023.mean_cb_bp": [
+  6.233,
+  2.0
+ ],
+ "robust.cb.2023.corr": [
+  0.999,
+  0.02
+ ],
+ "robust.cb.2023.share_rupiah_cb": [
+  0.653,
+  0.02
+ ],
+ "robust.cb.2024.mean_cb_bp": [
+  26.565,
+  2.0
+ ],
+ "robust.cb.2024.corr": [
+  0.999,
+  0.02
+ ],
+ "robust.cb.2024.share_rupiah_cb": [
+  0.606,
+  0.02
+ ],
+ "robust.cb.2025.mean_cb_bp": [
+  20.462,
+  2.0
+ ],
+ "robust.cb.2025.corr": [
+  1.0,
+  0.02
+ ],
+ "robust.cb.2025.share_rupiah_cb": [
+  0.563,
+  0.02
+ ],
+ "robust.cb.2026.mean_cb_bp": [
+  -0.614,
+  2.0
+ ],
+ "robust.cb.2026.corr": [
+  1.0,
+  0.02
+ ],
+ "robust.cb.2026.share_rupiah_cb": [
+  0.71,
+  0.02
+ ],
+ "robust.cb.all.mean_cb_bp": [
+  29.203,
+  2.0
+ ],
+ "robust.cb.all.corr": [
+  0.999,
+  0.02
+ ],
+ "robust.cb.all.share_rupiah_cb": [
+  0.883,
+  0.02
  ]
 }

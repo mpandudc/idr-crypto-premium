@@ -9,7 +9,7 @@ from analysis.common import hac_ols, record, vecm_shares
 from config import BP, RESULTS, START
 
 
-def fixing_gaps(H, J):
+def fixing_gaps(H, J, end_hours=1):
     """Change in JISDOR between consecutive fixings against the change in USDT/IDR from
     11:00 WIB on the first fixing day to 09:00 WIB on the next one (hourly bars are
     labelled by opening time: b + 1h is the bar that closes at 09:00 WIB)."""
@@ -17,8 +17,8 @@ def fixing_gaps(H, J):
     rows = []
     jd = J[J.index >= START].index
     for a, b in zip(jd[:-1], jd[1:]):
-        u0, u1 = ui.asof(a + pd.Timedelta(hours=3)), ui.asof(b + pd.Timedelta(hours=1))
-        f0, f1 = (fx.asof(a + pd.Timedelta(hours=3)), fx.asof(b + pd.Timedelta(hours=1))) if len(fx.dropna()) else (np.nan, np.nan)
+        u0, u1 = ui.asof(a + pd.Timedelta(hours=3)), ui.asof(b + pd.Timedelta(hours=end_hours))
+        f0, f1 = (fx.asof(a + pd.Timedelta(hours=3)), fx.asof(b + pd.Timedelta(hours=end_hours))) if len(fx.dropna()) else (np.nan, np.nan)
         rows.append(dict(a=a, b=b, gap=(b - a).days, dj=np.log(J[b] / J[a]), du=np.log(u1 / u0),
                          df=np.log(f1 / f0) if np.isfinite([f0, f1]).all() else np.nan))
     G = pd.DataFrame(rows).dropna(subset=["du"])

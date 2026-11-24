@@ -97,21 +97,26 @@ def binance(symbol, start, end, interval="1h"):
 
 
 # ---------------------------------------------------------------- Coinbase
-def coinbase_usdt(start, end):
-    """Hourly USDT/USD close from Coinbase Exchange (history begins in mid-2021)."""
+def coinbase(product, start, end, col="c"):
+    """Hourly close of a Coinbase Exchange product (candles are labelled by bar open time, UTC)."""
     t0, te = _ts(start), _ts(end)
     rows = []
     while t0 < te:
         t1 = min(t0 + pd.Timedelta(hours=300), te)
-        p = RAW / "coinbase" / "USDT-USD_3600" / f"{int(t0.timestamp())}_{int(t1.timestamp())}.json"
-        d = _cached(p, lambda: _get("https://api.exchange.coinbase.com/products/USDT-USD/candles",
+        p = RAW / "coinbase" / f"{product}_3600" / f"{int(t0.timestamp())}_{int(t1.timestamp())}.json"
+        d = _cached(p, lambda: _get(f"https://api.exchange.coinbase.com/products/{product}/candles",
                                     {"granularity": 3600, "start": t0.isoformat(),
                                      "end": t1.isoformat()}, pause=0.3), t1)
         rows += [(x[0], float(x[4])) for x in (d or []) if isinstance(x, list)]
         t0 = t1
-    df = pd.DataFrame(rows, columns=["ts", "u"]).drop_duplicates("ts")
+    df = pd.DataFrame(rows, columns=["ts", col]).drop_duplicates("ts")
     df["ts"] = pd.to_datetime(df.ts, unit="s", utc=True)
     return df.set_index("ts").sort_index()
+
+
+def coinbase_usdt(start, end):
+    """Hourly USDT/USD close from Coinbase Exchange (history begins in mid-2021)."""
+    return coinbase("USDT-USD", start, end, col="u")
 
 
 # ---------------------------------------------------------------- JISDOR (Bank Indonesia)

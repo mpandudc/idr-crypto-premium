@@ -6,6 +6,7 @@
   python run.py analyze final_rq3                       pooled VECM per month and session
   python run.py analyze final_band                      thresholds against the direction-specific cost band
   python run.py analyze extras                          rupiah-stress RQ4, pre-break tax test, ETH, cost, 2021 replay
+  python run.py analyze robust                          Coinbase global price, calm days, 08:00 cutoff, GFEVD
   python run.py verify                                  compare with the pilot values
   python run.py all                                     everything, in order
 """
@@ -56,6 +57,9 @@ def analyze(which):
         elif name == "extras":
             from analysis import extras
             extras.run(H, D, J)
+        elif name == "robust":
+            from analysis import robust
+            robust.run(H, D, J)
         elif name == "final_rules":
             from analysis import final
             final.run_rules(H, D)
